@@ -1,0 +1,367 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="user (generated)" id="1682573081884-1">
+        <createTable schemaName="mspairings" tableName="pairing_duty">
+            <column name="pairing_id" type="BIGINT"/>
+            <column name="duty_id" type="BIGINT"/>
+            <column name="duty_num" type="INTEGER"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_duty_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-2">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/pairing_duty.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="pairing_duty">
+            <column header="pairing_id" name="pairing_id" type="NUMERIC"/>
+            <column header="duty_id" name="duty_id" type="NUMERIC"/>
+            <column header="duty_num" name="duty_num" type="NUMERIC"/>
+            <column header="id" name="id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-3">
+        <createTable schemaName="mspairings" tableName="duty_leg">
+            <column name="leg_id" type="BIGINT"/>
+            <column name="duty_id" type="BIGINT"/>
+            <column name="leg_num" type="INTEGER"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="duty_leg_pkey"/>
+            </column>
+            <column name="leg_type" type="VARCHAR(10)"/>
+            <column name="leg_rps" type="BOOLEAN"/>
+            <column name="leg_work_time_plan" type="INTEGER"/>
+            <column name="leg_work_time_fact" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-4">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/duty_leg.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="duty_leg">
+            <column header="leg_id" name="leg_id" type="NUMERIC"/>
+            <column header="duty_id" name="duty_id" type="NUMERIC"/>
+            <column header="leg_num" name="leg_num" type="NUMERIC"/>
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="leg_type" name="leg_type" type="STRING"/>
+            <column header="leg_rps" name="leg_rps" type="BOOLEAN"/>
+            <column header="leg_work_time_plan" name="leg_work_time_plan" type="NUMERIC"/>
+            <column header="leg_work_time_fact" name="leg_work_time_fact" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-5">
+        <createIndex indexName="pairing_duty_pairing_id_index" schemaName="mspairings" tableName="pairing_duty">
+            <column name="pairing_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-6">
+        <createIndex indexName="duty_leg_duty_id_index" schemaName="mspairings" tableName="duty_leg">
+            <column name="duty_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-7">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="duty_complement_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-8">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="duty_leg_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-9">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="duty_rest_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-10">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="duty_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-11">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="eco_load_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-12">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="leg_complement_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-13">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="leg_eco_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-14">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="pairing_complement_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-15">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="pairing_duty_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-16">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="pairing_pers_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-17">
+        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1" schemaName="mspairings" sequenceName="pairing_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-18">
+        <createTable schemaName="mspairings" tableName="duty">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="duty_pkey"/>
+            </column>
+            <column name="eco_id" type="VARCHAR(100)"/>
+            <column name="duty_type_id" type="INTEGER"/>
+            <column name="night" type="BOOLEAN"/>
+            <column name="hard" type="BOOLEAN"/>
+            <column name="briefing_time" type="INTEGER"/>
+            <column name="debriefing_time" type="INTEGER"/>
+            <column name="flight_time" type="INTEGER"/>
+            <column name="crew_type_id" type="INTEGER"/>
+            <column name="duty_group_id" type="INTEGER"/>
+            <column name="acclimatization" type="BOOLEAN"/>
+            <column name="increased_one_hour" type="BOOLEAN"/>
+            <column name="night_departure" type="BOOLEAN"/>
+            <column name="night_arrival" type="BOOLEAN"/>
+            <column name="date_start_plan_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_end_plan_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_start_fact_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_end_fact_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="rps_briefing_time" type="INTEGER"/>
+            <column name="rps_debriefing_time" type="INTEGER"/>
+            <column name="duration_plan" type="INTEGER"/>
+            <column name="duration_fact" type="INTEGER"/>
+            <column name="duration_right_max" type="INTEGER"/>
+            <column name="block_time" type="INTEGER"/>
+            <column name="work_time_plan" type="INTEGER"/>
+            <column name="work_time_fact" type="INTEGER"/>
+            <column name="briefing_work_time" type="INTEGER"/>
+            <column name="debriefing_work_time" type="INTEGER"/>
+            <column name="rps_briefing_work_time" type="INTEGER"/>
+            <column name="rps_debriefing_work_time" type="INTEGER"/>
+            <column name="duration_plan_max" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-19">
+        <createTable schemaName="mspairings" tableName="duty_complement">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="duty_complement_pkey"/>
+            </column>
+            <column name="duty_id" type="BIGINT"/>
+            <column name="rank_code" type="VARCHAR(10)"/>
+            <column name="count" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-20">
+        <createTable schemaName="mspairings" tableName="duty_rest">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="duty_rest_pkey"/>
+            </column>
+            <column name="rest_type_id" type="INTEGER"/>
+            <column name="duty_id" type="BIGINT"/>
+            <column name="date_start_plan_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_end_plan_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_start_fact_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_end_fact_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="duration_minimal" type="INTEGER"/>
+            <column name="duration_normal" type="INTEGER"/>
+            <column name="duration_plan" type="INTEGER"/>
+            <column name="duration_total_plan" type="INTEGER"/>
+            <column name="duration_total_fact" type="INTEGER"/>
+            <column name="work_time_plan" type="INTEGER"/>
+            <column name="work_time_fact" type="INTEGER"/>
+            <column name="port_code" type="VARCHAR(512)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-21">
+        <createTable schemaName="mspairings" tableName="eco_load">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="eco_load_pkey"/>
+            </column>
+            <column name="user" type="VARCHAR(100)"/>
+            <column name="date_load" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="type_load" type="VARCHAR(100)"/>
+            <column name="eco_file_id" type="VARCHAR(100)"/>
+            <column name="period_start" type="date"/>
+            <column name="period_end" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-22">
+        <createTable schemaName="mspairings" tableName="leg_complement">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="leg_complement_pkey"/>
+            </column>
+            <column name="leg_id" type="BIGINT"/>
+            <column name="rank_code" type="VARCHAR(10)"/>
+            <column name="count" type="INTEGER"/>
+            <column name="eco_load_id" type="BIGINT"/>
+            <column name="domain" type="VARCHAR(2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-23">
+        <createTable schemaName="mspairings" tableName="leg_eco">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="leg_eco_pkey"/>
+            </column>
+            <column name="type" type="VARCHAR(20)"/>
+            <column name="airline_code" type="VARCHAR(5)"/>
+            <column name="flight_number" type="VARCHAR(20)"/>
+            <column name="aircraft_type" type="VARCHAR(5)"/>
+            <column name="station_departure" type="VARCHAR(5)"/>
+            <column name="station_arrival" type="VARCHAR(5)"/>
+            <column name="date_start" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="date_end" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-24">
+        <createTable schemaName="mspairings" tableName="pairing">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_pkey"/>
+            </column>
+            <column name="eco_id" type="VARCHAR(100)"/>
+            <column name="eco_load_id" type="BIGINT"/>
+            <column name="freeze_for_eco" type="BOOLEAN"/>
+            <column name="pairing_type_id" type="INTEGER"/>
+            <column name="pairing_status_id" type="INTEGER"/>
+            <column name="fleet" type="VARCHAR(100)"/>
+            <column name="comment" type="VARCHAR(255)"/>
+            <column name="change_date" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="source_id" type="VARCHAR(50)"/>
+            <column name="source_type" type="VARCHAR(10)"/>
+            <column name="domain" type="VARCHAR(2)"/>
+            <column name="date_start_plan_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_end_plan_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_start_fact_utc" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="date_end_fact_utc" type="TIMESTAMP WITH TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-25">
+        <createTable schemaName="mspairings" tableName="pairing_complement">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_complement_pkey"/>
+            </column>
+            <column name="pairing_id" type="BIGINT"/>
+            <column name="rank_code" type="VARCHAR(10)"/>
+            <column name="count" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-26">
+        <createTable schemaName="mspairings" tableName="pairing_pers">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_pers_pkey"/>
+            </column>
+            <column name="pairing_id" type="BIGINT"/>
+            <column name="sap_id" type="BIGINT"/>
+            <column name="rank_code" type="VARCHAR(10)"/>
+            <column name="func" type="VARCHAR(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-27">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/duty.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="duty">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="eco_id" name="eco_id" type="skip"/>
+            <column header="duty_type_id" name="duty_type_id" type="NUMERIC"/>
+            <column header="night" name="night" type="BOOLEAN"/>
+            <column header="hard" name="hard" type="BOOLEAN"/>
+            <column header="briefing_time" name="briefing_time" type="NUMERIC"/>
+            <column header="debriefing_time" name="debriefing_time" type="NUMERIC"/>
+            <column header="flight_time" name="flight_time" type="NUMERIC"/>
+            <column header="crew_type_id" name="crew_type_id" type="NUMERIC"/>
+            <column header="duty_group_id" name="duty_group_id" type="NUMERIC"/>
+            <column header="acclimatization" name="acclimatization" type="BOOLEAN"/>
+            <column header="increased_one_hour" name="increased_one_hour" type="BOOLEAN"/>
+            <column header="night_departure" name="night_departure" type="BOOLEAN"/>
+            <column header="night_arrival" name="night_arrival" type="BOOLEAN"/>
+            <column header="date_start_plan_utc" name="date_start_plan_utc" type="DATE"/>
+            <column header="date_end_plan_utc" name="date_end_plan_utc" type="DATE"/>
+            <column header="date_start_fact_utc" name="date_start_fact_utc" type="DATE"/>
+            <column header="date_end_fact_utc" name="date_end_fact_utc" type="DATE"/>
+            <column header="rps_briefing_time" name="rps_briefing_time" type="skip"/>
+            <column header="rps_debriefing_time" name="rps_debriefing_time" type="skip"/>
+            <column header="duration_plan" name="duration_plan" type="NUMERIC"/>
+            <column header="duration_fact" name="duration_fact" type="skip"/>
+            <column header="duration_right_max" name="duration_right_max" type="NUMERIC"/>
+            <column header="block_time" name="block_time" type="skip"/>
+            <column header="work_time_plan" name="work_time_plan" type="NUMERIC"/>
+            <column header="work_time_fact" name="work_time_fact" type="skip"/>
+            <column header="briefing_work_time" name="briefing_work_time" type="NUMERIC"/>
+            <column header="debriefing_work_time" name="debriefing_work_time" type="NUMERIC"/>
+            <column header="rps_briefing_work_time" name="rps_briefing_work_time" type="skip"/>
+            <column header="rps_debriefing_work_time" name="rps_debriefing_work_time" type="skip"/>
+            <column header="duration_plan_max" name="duration_plan_max" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-28">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/duty_complement.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="duty_complement">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="duty_id" name="duty_id" type="NUMERIC"/>
+            <column header="rank_code" name="rank_code" type="STRING"/>
+            <column header="count" name="count" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-29">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/duty_rest.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="duty_rest">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="rest_type_id" name="rest_type_id" type="NUMERIC"/>
+            <column header="duty_id" name="duty_id" type="NUMERIC"/>
+            <column header="date_start_plan_utc" name="date_start_plan_utc" type="DATE"/>
+            <column header="date_end_plan_utc" name="date_end_plan_utc" type="DATE"/>
+            <column header="date_start_fact_utc" name="date_start_fact_utc" type="DATE"/>
+            <column header="date_end_fact_utc" name="date_end_fact_utc" type="DATE"/>
+            <column header="duration_minimal" name="duration_minimal" type="NUMERIC"/>
+            <column header="duration_normal" name="duration_normal" type="NUMERIC"/>
+            <column header="duration_plan" name="duration_plan" type="NUMERIC"/>
+            <column header="duration_total_plan" name="duration_total_plan" type="NUMERIC"/>
+            <column header="duration_total_fact" name="duration_total_fact" type="skip"/>
+            <column header="work_time_plan" name="work_time_plan" type="NUMERIC"/>
+            <column header="work_time_fact" name="work_time_fact" type="skip"/>
+            <column header="port_code" name="port_code" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-30">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/eco_load.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="eco_load">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="user" name="user" type="STRING"/>
+            <column header="date_load" name="date_load" type="DATE"/>
+            <column header="type_load" name="type_load" type="STRING"/>
+            <column header="eco_file_id" name="eco_file_id" type="STRING"/>
+            <column header="period_start" name="period_start" type="DATE"/>
+            <column header="period_end" name="period_end" type="DATE"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-31">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/leg_complement.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="leg_complement">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="leg_id" name="leg_id" type="NUMERIC"/>
+            <column header="rank_code" name="rank_code" type="STRING"/>
+            <column header="count" name="count" type="NUMERIC"/>
+            <column header="eco_load_id" name="eco_load_id" type="skip"/>
+            <column header="domain" name="domain" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-32">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/pairing.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="pairing">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="eco_id" name="eco_id" type="STRING"/>
+            <column header="eco_load_id" name="eco_load_id" type="NUMERIC"/>
+            <column header="freeze_for_eco" name="freeze_for_eco" type="BOOLEAN"/>
+            <column header="pairing_type_id" name="pairing_type_id" type="NUMERIC"/>
+            <column header="pairing_status_id" name="pairing_status_id" type="NUMERIC"/>
+            <column header="fleet" name="fleet" type="STRING"/>
+            <column header="comment" name="comment" type="STRING"/>
+            <column header="change_date" name="change_date" type="DATE"/>
+            <column header="source_id" name="source_id" type="STRING"/>
+            <column header="source_type" name="source_type" type="STRING"/>
+            <column header="domain" name="domain" type="STRING"/>
+            <column header="date_start_plan_utc" name="date_start_plan_utc" type="DATE"/>
+            <column header="date_end_plan_utc" name="date_end_plan_utc" type="DATE"/>
+            <column header="date_start_fact_utc" name="date_start_fact_utc" type="DATE"/>
+            <column header="date_end_fact_utc" name="date_end_fact_utc" type="DATE"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-33">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/pairing_complement.csv" quotchar="&quot;" schemaName="mspairings" separator="," tableName="pairing_complement">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="pairing_id" name="pairing_id" type="NUMERIC"/>
+            <column header="rank_code" name="rank_code" type="STRING"/>
+            <column header="count" name="count" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-34">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_complement" baseTableSchemaName="mspairings" constraintName="pairing_complement_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="mspairings" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-35">
+        <addForeignKeyConstraint baseColumnNames="duty_id" baseTableName="pairing_duty" baseTableSchemaName="mspairings" constraintName="pairing_duty_duty_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="duty" referencedTableSchemaName="mspairings" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-36">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_duty" baseTableSchemaName="mspairings" constraintName="pairing_duty_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="mspairings" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-37">
+        <addForeignKeyConstraint baseColumnNames="eco_load_id" baseTableName="pairing" baseTableSchemaName="mspairings" constraintName="pairing_eco_load_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="eco_load" referencedTableSchemaName="mspairings" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682573081884-38">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_pers" baseTableSchemaName="mspairings" constraintName="pairing_pers_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="mspairings" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

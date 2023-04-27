@@ -1,0 +1,403 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="user (generated)" id="1682577108123-1">
+        <createTable remarks="Смены пейрингов" schemaName="roster" tableName="pairing_duty">
+            <column autoIncrement="true" name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_duty_pk"/>
+            </column>
+            <column name="pairing_id" remarks="Id пейринга" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" remarks="Дата начала" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="Дата окончания" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-2">
+        <createTable remarks="Активности пейрингов" schemaName="roster" tableName="pairing_activity">
+            <column autoIncrement="true" name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_activity_pk"/>
+            </column>
+            <column name="pairing_id" remarks="Id пейринга" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" remarks="Тип активности" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" remarks="Дата начала" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="Дата окончания" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="airport" remarks="Место проведения наземной  активности" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duty_id" remarks="Id смены" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-3">
+        <createTable remarks="Леги пейрингов" schemaName="roster" tableName="pairing_leg">
+            <column autoIncrement="true" name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_leg_pk"/>
+            </column>
+            <column name="pairing_id" remarks="Id пейринга" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" remarks="Время  начала" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="Время окончания" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="carrier" remarks="Код авиакомпании" type="CHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aircraft_type" remarks="Тип ВС" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="flight_num" remarks="Номер рейса" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_airport" remarks="Аэропорт отправления" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_airport" remarks="Аэропорт прибытия" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="is_deadhead" remarks="Признак дэдхеда" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_type" remarks="Тип сервиса" type="CHAR(1)"/>
+            <column name="departure_terminal" remarks="Терминал отправления" type="VARCHAR(3)"/>
+            <column name="arrival_terminal" remarks="Терминал прибытия" type="VARCHAR(3)"/>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="duty_id" remarks="Id смены" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-4">
+        <createTable remarks="Комплементы легов" schemaName="roster" tableName="pairing_complement">
+            <column name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_leg_complement_pk"/>
+            </column>
+            <column name="pairing_id" remarks="Id пейринга" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" remarks="Тип (F - пилоты, С - бортпроводники)" type="CHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="rank" remarks="Ранг" type="VARCHAR(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" remarks="Количество" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-5">
+        <createTable remarks="Заголовки пейрингов" schemaName="roster" tableName="pairing">
+            <column autoIncrement="true" name="id" remarks="Id пейринга" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_pk"/>
+            </column>
+            <column name="type" remarks="Тип пейринга" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aircraft_type_id" remarks="Тип воздушного судна" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" remarks="Дата и время начала пейринга" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="Дата и время окончания пейринга" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_airport" remarks="Аэропорт отправления" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_airport" remarks="Аэропорт прибытия" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, обновивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время обновления записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="pickup_date" remarks="Дата и время начала пейринга c учетом предполетной подготовки" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aircraft_type" remarks="Тип ВС" type="SMALLINT"/>
+            <column name="rest_end_date" remarks="Дата и время окончания пейринга с нормальным отдыхом" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="min_rest_end_date" remarks="Дата и время окончания пейринга с минимальным отдыхом" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="pairing_canvas_draft_id" remarks="Id черновика полотна пейрингов" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-6">
+        <createTable remarks="Комплементы резервов" schemaName="roster" tableName="reserve_complement">
+            <column autoIncrement="true" name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="reserve_complement_pk"/>
+            </column>
+            <column name="reserve_id" remarks="Id резерва" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="rank" remarks="Ранг" type="VARCHAR(4)"/>
+            <column name="quantity" remarks="Количество" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-7">
+        <createTable remarks="Леги расписания" schemaName="roster" tableName="schedule_leg">
+            <column name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="schedule_leg_pk"/>
+            </column>
+            <column name="flight_num" remarks="Номер рейса" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_airport" remarks="Аэропорт отправления" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_date" remarks="Время отправления" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_airport" remarks="Аэропорт прибытия" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_date" remarks="Время прибытия" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_type" remarks="Тип сервиса" type="CHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="carrier" remarks="Перевозчик" type="CHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="onward_flight_num" remarks="Номер следующего рейса" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-8">
+        <createTable remarks="Черновик полотна пейрингов" schemaName="roster" tableName="pairing_canvas_draft">
+            <column autoIncrement="true" name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pairing_canvas_draft_pk"/>
+            </column>
+            <column name="name" remarks="Наименование" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" remarks="Описание" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="start_date" remarks="Время начала периода" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="Время окончания периода" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aicraft_type" remarks="Тип воздушного судна" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="is_calculated" remarks="Признак черновика, полученного из IBM ECO" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-9">
+        <createTable remarks="Справочник ролей" schemaName="roster" tableName="role">
+            <column name="id" remarks="Id записи" type="SMALLINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pk"/>
+            </column>
+            <column name="name" remarks="Наименование" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column defaultValueBoolean="false" name="is_deleted" remarks="Признак удаленной записи" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-10">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="db/changelog/data/role.csv" quotchar="&quot;" schemaName="roster" separator="," tableName="role">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="create_user" name="create_user" type="STRING"/>
+            <column header="create_date" name="create_date" type="DATE"/>
+            <column header="update_user" name="update_user" type="skip"/>
+            <column header="update_date" name="update_date" type="skip"/>
+            <column header="is_deleted" name="is_deleted" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-11">
+        <createTable remarks="Роли членов экипажа в назначениях" schemaName="roster" tableName="pairing_assignment_role">
+            <column autoIncrement="true" name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assignment_role_pk"/>
+            </column>
+            <column name="assignment_id" remarks="Id назначения" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" remarks="Id роли" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-12">
+        <createTable remarks="Назначения" schemaName="roster" tableName="pairing_assignment">
+            <column autoIncrement="true" name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assignment_pk"/>
+            </column>
+            <column name="pairing_id" remarks="Id пейринга" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" remarks="Табельный номер сотрудника" type="CHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rank" remarks="Ранг" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="create_user" remarks="Пользователь, создавший запись" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="now()" name="create_date" remarks="Время создания записи" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_user" remarks="Пользователь, изменивший запись" type="TEXT"/>
+            <column name="update_date" remarks="Время изменения записи" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-13">
+        <createTable remarks="Резервы" schemaName="roster" tableName="reserve">
+            <column name="id" remarks="Id записи" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="reserve_pk"/>
+            </column>
+            <column name="airport" remarks="Аэропорт" type="CHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aircraft_type" remarks="Тип воздушного судна" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" remarks="Время начала" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="Время окончания" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_regular" remarks="Признак регулярного резерва" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="flight_num" remarks="Номер рейса" type="TEXT"/>
+            <column name="kind" remarks="Вид резерва (D - дневной, N - ночной)" type="CHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pairing_id" remarks="Id связанного пейринга" type="BIGINT"/>
+            <column name="type" remarks="Тип пейринга" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-14">
+        <addUniqueConstraint columnNames="name" constraintName="role_un" schemaName="roster" tableName="role"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-15">
+        <addForeignKeyConstraint baseColumnNames="assignment_id" baseTableName="pairing_assignment_role" baseTableSchemaName="roster" constraintName="assignment_role_assignment_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing_assignment" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-16">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="pairing_assignment_role" baseTableSchemaName="roster" constraintName="assignment_role_role_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="role" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-17">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_activity" baseTableSchemaName="roster" constraintName="pairing_activity_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-18">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_assignment" baseTableSchemaName="roster" constraintName="pairing_assignment_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-19">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_duty" baseTableSchemaName="roster" constraintName="pairing_duty_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-20">
+        <addForeignKeyConstraint baseColumnNames="pairing_canvas_draft_id" baseTableName="pairing" baseTableSchemaName="roster" constraintName="pairing_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing_canvas_draft" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-21">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_complement" baseTableSchemaName="roster" constraintName="pairing_leg_complement_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing_leg" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-22">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="pairing_leg" baseTableSchemaName="roster" constraintName="pairing_leg_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-23">
+        <addForeignKeyConstraint baseColumnNames="reserve_id" baseTableName="reserve_complement" baseTableSchemaName="roster" constraintName="reserve_complement_reserve_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="reserve" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1682577108123-24">
+        <addForeignKeyConstraint baseColumnNames="pairing_id" baseTableName="reserve" baseTableSchemaName="roster" constraintName="reserve_pairing_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pairing" referencedTableSchemaName="roster" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
