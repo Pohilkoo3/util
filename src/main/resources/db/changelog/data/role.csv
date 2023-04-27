@@ -1,4 +1,0 @@
-"id","name","create_user","create_date","update_user","update_date","is_deleted"
-"1","Инструктор","SYSTEM","2023-04-26T10:41:55.655168","NULL","NULL","false"
-"2","Стажер","SYSTEM","2023-04-26T10:41:55.66027","NULL","NULL","false"
-"3","Обучающийся","SYSTEM","2023-04-26T10:41:55.664882","NULL","NULL","false"
